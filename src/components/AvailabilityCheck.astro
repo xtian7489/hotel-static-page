@@ -133,31 +133,31 @@ const { phoneNumber = "", hotelName = "Hotel" } = Astro.props;
 						>
 							<span
 								class="flex h-[38px] w-[38px] items-center justify-center"
-								>Mo</span
+								>Do</span
 							>
 							<span
 								class="flex h-[38px] w-[38px] items-center justify-center"
-								>Tu</span
+								>Lu</span
 							>
 							<span
 								class="flex h-[38px] w-[38px] items-center justify-center"
-								>We</span
+								>Ma</span
 							>
 							<span
 								class="flex h-[38px] w-[38px] items-center justify-center"
-								>Th</span
+								>Mi</span
 							>
 							<span
 								class="flex h-[38px] w-[38px] items-center justify-center"
-								>Fr</span
+								>Jue</span
+							>
+							<span
+								class="flex h-[38px] w-[38px] items-center justify-center"
+								>Vie</span
 							>
 							<span
 								class="flex h-[38px] w-[38px] items-center justify-center"
 								>Sa</span
-							>
-							<span
-								class="flex h-[38px] w-[38px] items-center justify-center"
-								>Su</span
 							>
 						</div>
 
@@ -332,8 +332,8 @@ const { phoneNumber = "", hotelName = "Hotel" } = Astro.props;
 			const firstDayOfMonth = new Date(year, month, 1).getDay();
 			const daysInMonth = new Date(year, month + 1, 0).getDate();
 
-			let adjustedFirstDay =
-				firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
+			let adjustedFirstDay = firstDayOfMonth;
+			// firstDayOfMonth === 0 ? 6 : firstDayOfMonth - 1;
 
 			for (let i = 0; i < adjustedFirstDay; i++) {
 				daysContainer.innerHTML += `<div></div>`;

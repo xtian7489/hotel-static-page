@@ -1,23 +1,318 @@
+---
+// Props del layout
+export interface Props {
+	title?: string;
+	description?: string;
+	keywords?: string;
+	company?: any; // Puedes tiparlo mejor si lo deseas
+}
+
+const {
+	title = "Hotel",
+	description = "Disfrute de una experiencia hotelera única",
+	keywords = "hotel, alojamiento, reservas, vacaciones",
+	company,
+} = Astro.props;
+
+import "../styles/global.css";
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="es">
 	<head>
+		<!-- Metadatos mejorados -->
+		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords} />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+
+		<!-- Google Fonts -->
+		<link
+			href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+
+		<!-- FontAwesome -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+		/>
+
+		<!-- Favicon -->
+		{
+			company?.icon && (
+				<link
+					rel="shortcut icon"
+					type="image/png"
+					href={company.icon}
+				/>
+			)
+		}
+
+		<!-- Estilos locales (copia tu style.css aquí) -->
+
+		<title>
+			{title}
+			{company?.hotel_name ? `| ${company.hotel_name}` : ""}
+		</title>
+
+		<!-- Slot para CSS adicional -->
+		<slot name="extra_css" />
 	</head>
-	<body>
-		<slot />
+	<body class="font-montserrat bg-gray-50">
+		<header
+			id="navbar"
+			class="sticky top-0 z-50 bg-white shadow-md transition-all duration-300"
+		>
+			<nav class="bg-white">
+				<div
+					class="container mx-auto px-4 flex items-center justify-between py-4"
+				>
+					<a href="/" class="flex items-center">
+						{
+							company?.logo && (
+								<img
+									src={company.logo}
+									class="h-12 md:h-16 w-auto transition-all duration-300 hover:scale-105"
+									alt={`Logo ${company.hotel_name}`}
+								/>
+							)
+						}
+					</a>
+
+					<!-- Menú desktop -->
+					<div class="hidden lg:flex lg:items-center space-x-8">
+						<a
+							href="/"
+							class="text-secondary hover:text-primary font-medium text-lg relative group"
+						>
+							Inicio
+							<span
+								class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+							></span>
+						</a>
+						<a
+							href="/informacion#gallery"
+							class="text-secondary hover:text-primary font-medium text-lg relative group"
+						>
+							Galería
+							<span
+								class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+							></span>
+						</a>
+						<a
+							href="/informacion"
+							class="text-secondary hover:text-primary font-medium text-lg relative group"
+						>
+							Información
+							<span
+								class="absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"
+							></span>
+						</a>
+						<!-- <a
+							href="/reservation"
+							class="bg-primary text-white px-6 py-2 rounded-lg font-medium text-lg hover:bg-primary/90 transition-all duration-300"
+						>
+							Reserva
+						</a> -->
+					</div>
+
+					<!-- Botón móvil -->
+					<button
+						class="lg:hidden text-gray-700 focus:outline-none"
+						onclick="openMenu()"
+					>
+						<i class="fas fa-bars text-2xl"></i>
+					</button>
+				</div>
+
+				<!-- Menú móvil -->
+				<div
+					id="link-menu"
+					class="fixed top-0 -right-full h-full bg-white shadow-xl z-50 transition-all duration-300 ease-in-out flex flex-col p-6 w-full"
+				>
+					<div class="flex justify-between items-center mb-8">
+						{
+							company?.logo && (
+								<img
+									src={company.logo}
+									class="h-10 w-auto"
+									alt="Logo"
+								/>
+							)
+						}
+						<button onclick="openMenu()" class="text-gray-700">
+							<i class="fas fa-times text-2xl"></i>
+						</button>
+					</div>
+					<div class="flex flex-col space-y-6">
+						<a
+							href="/"
+							class="text-xl font-medium text-gray-800 hover:text-primary py-2 border-b border-gray-100"
+							>Inicio</a
+						>
+						<a
+							href="/informacion#gallery"
+							class="text-xl font-medium text-gray-800 hover:text-primary py-2 border-b border-gray-100"
+							>Galería</a
+						>
+						<a
+							href="/informacion"
+							class="text-xl font-medium text-gray-800 hover:text-primary py-2 border-b border-gray-100"
+							>Información</a
+						>
+						<!-- <a
+							href="/reservation"
+							class="bg-primary text-white px-6 py-3 rounded-lg font-medium text-lg text-center mt-4 hover:bg-primary/90"
+						>
+							Reserva
+						</a> -->
+					</div>
+					<div class="mt-auto pt-8">
+						{
+							company?.facebook_url && (
+								<a
+									href={company.facebook_url}
+									target="_blank"
+									class="inline-block text-gray-500 hover:text-primary mx-2 text-xl"
+								>
+									<i class="fab fa-facebook-f" />
+								</a>
+							)
+						}
+						{
+							company?.instagram_url && (
+								<a
+									href={company.instagram_url}
+									target="_blank"
+									class="inline-block text-gray-500 hover:text-primary mx-2 text-xl"
+								>
+									<i class="fab fa-instagram" />
+								</a>
+							)
+						}
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<!-- Overlay móvil -->
+		<div
+			id="overlay"
+			class="fixed inset-0 bg-black/50 z-40 hidden"
+			onclick="openMenu()"
+		>
+		</div>
+
+		<main id="mainElement">
+			<slot />
+			<!-- Aquí va el contenido de cada página -->
+		</main>
+
+		<!-- Footer mejorado -->
+		<footer class="bg-secondary text-white">
+			<div class="container mx-auto px-4 py-12">
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					<div>
+						{
+							company?.logo && (
+								<img
+									src={company.logo}
+									class="h-12 mb-4 invert"
+									alt="Logo"
+								/>
+							)
+						}
+						<p class="text-gray-300">
+							{company?.short_description}
+						</p>
+					</div>
+					<div>
+						<h3 class="text-xl font-bold mb-4">Enlaces rápidos</h3>
+						<ul class="space-y-2">
+							<li>
+								<a
+									href="/"
+									class="text-gray-300 hover:text-white"
+									>Inicio</a
+								>
+							</li>
+							<li>
+								<a
+									href="/informacion"
+									class="text-gray-300 hover:text-white"
+									>Información</a
+								>
+							</li>
+							<!-- <li>
+								<a
+									href="/reservation"
+									class="text-gray-300 hover:text-white"
+									>Reservas</a
+								>
+							</li> -->
+						</ul>
+					</div>
+					<div>
+						<h3 class="text-xl font-bold mb-4">Contacto</h3>
+						<p class="text-gray-300 mb-2">
+							<i class="fas fa-map-marker-alt mr-2"></i>
+							{company?.address}
+						</p>
+						<p class="text-gray-300 mb-2">
+							<i class="fas fa-phone mr-2"></i>
+							{company?.phone_number}
+						</p>
+						<p class="text-gray-300">
+							<i class="fas fa-envelope mr-2"></i>
+							{company?.email_address}
+						</p>
+					</div>
+				</div>
+				<div
+					class="border-t border-gray-700 mt-8 pt-8 text-center text-gray-400"
+				>
+					© {new Date().getFullYear()}
+					<a href="https://cevadev.com" target="_blank">CEVA</a>.
+					Todos los derechos reservados.
+				</div>
+			</div>
+		</footer>
+
+		<!-- Scripts -->
+		<script is:inline>
+			// Funcionalidad del menú móvil
+			function openMenu() {
+				const menu = document.getElementById("link-menu");
+				const overlay = document.getElementById("overlay");
+				if (menu.classList.contains("-right-full")) {
+					menu.classList.remove("-right-full");
+					menu.classList.add("right-0");
+					overlay.classList.remove("hidden");
+				} else {
+					menu.classList.remove("right-0");
+					menu.classList.add("-right-full");
+					overlay.classList.add("hidden");
+				}
+			}
+
+			// Opcional: cerrar menú al hacer click en un enlace
+			document.querySelectorAll("#link-menu a").forEach((link) => {
+				link.addEventListener("click", () => {
+					const menu = document.getElementById("link-menu");
+					const overlay = document.getElementById("overlay");
+					menu.classList.remove("right-0");
+					menu.classList.add("-right-full");
+					overlay.classList.add("hidden");
+				});
+			});
+		</script>
+		<script
+			src="https://unpkg.com/htmx.org@2.0.4"
+			integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+"
+			crossorigin="anonymous"></script>
+
+		<!-- Slot para JS adicional -->
+		<slot name="extra_js" />
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

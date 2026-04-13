@@ -1,0 +1,87 @@
+[
+    {
+        "alt": "baño",
+        "image_large": "/images/large/baño.jpg",
+        "image_medium": "/images/medium/baño.jpg"
+    },
+    {
+        "alt": "espejo",
+        "image_large": "/images/large/espejo.jpg",
+        "image_medium": "/images/medium/espejo.jpg"
+    },
+    {
+        "alt": "heladera",
+        "image_large": "/images/large/heladera.jpg",
+        "image_medium": "/images/medium/heladera.jpg"
+    },
+    {
+        "alt": "mesa",
+        "image_large": "/images/large/mesa.jpg",
+        "image_medium": "/images/medium/mesa.jpg"
+    },
+    {
+        "alt": "ventana",
+        "image_large": "/images/large/ventana.jpg",
+        "image_medium": "/images/medium/ventana.jpg"
+    },
+    {
+        "alt": "cama",
+        "image_large": "/images/large/cama.jpg",
+        "image_medium": "/images/medium/cama.jpg"
+    },
+    {
+        "alt": "frente",
+        "image_large": "/images/large/frente.jpg",
+        "image_medium": "/images/medium/frente.jpg"
+    },
+    {
+        "alt": "jardin",
+        "image_large": "/images/large/jardin.jpg",
+        "image_medium": "/images/medium/jardin.jpg"
+    },
+    {
+        "alt": "mesa2",
+        "image_large": "/images/large/mesa2.jpg",
+        "image_medium": "/images/medium/mesa2.jpg"
+    },
+    {
+        "alt": "cama2",
+        "image_large": "/images/large/cama2.jpg",
+        "image_medium": "/images/medium/cama2.jpg"
+    },
+    {
+        "alt": "frente2",
+        "image_large": "/images/large/frente2.jpg",
+        "image_medium": "/images/medium/frente2.jpg"
+    },
+    {
+        "alt": "jardin2",
+        "image_large": "/images/large/jardin2.jpg",
+        "image_medium": "/images/medium/jardin2.jpg"
+    },
+    {
+        "alt": "puerta",
+        "image_large": "/images/large/puerta.jpg",
+        "image_medium": "/images/medium/puerta.jpg"
+    },
+    {
+        "alt": "cocina",
+        "image_large": "/images/large/cocina.jpg",
+        "image_medium": "/images/medium/cocina.jpg"
+    },
+    {
+        "alt": "habitacion",
+        "image_large": "/images/large/habitacion.jpg",
+        "image_medium": "/images/medium/habitacion.jpg"
+    },
+    {
+        "alt": "jardin3",
+        "image_large": "/images/large/jardin3.jpg",
+        "image_medium": "/images/medium/jardin3.jpg"
+    },
+    {
+        "alt": "sillon",
+        "image_large": "/images/large/sillon.jpg",
+        "image_medium": "/images/medium/sillon.jpg"
+    }
+]

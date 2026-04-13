@@ -1,0 +1,22 @@
+[
+  {
+    "name": "WiFi gratuito",
+    "description": "Conexión inalámbrica a internet de alta velocidad.",
+    "icon": "wifi"
+  },
+  {
+    "name": "Parking",
+    "description": "Estacionamiento disponible en el establecimiento. (reserva previa)",
+    "icon": "warehouse"
+  },
+  {
+    "name": "Jardín",
+    "description": "Espacio verde para disfrutar al aire libre.",
+    "icon": "tree"
+  },
+  {
+    "name": "Anafes",
+    "description": "Cocina equipada con anafes eléctricos.",
+    "icon": "fire-burner"
+  }
+]

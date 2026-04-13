@@ -1,11 +1,132 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import AvailabilityCheck from "../components/AvailabilityCheck.astro";
+import companyData from "../data/company.json";
+import amenitiesData from "../data/amenities.json";
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	description={`Bienvenido a ${companyData.hotel_name} - Disfrute de una experiencia hotelera única`}
+	company={companyData}
+>
+	<!-- Hero Section -->
+	<section
+		id="heroSection"
+		class="relative lg:h-screen py-5 lg:py-0 flex items-center justify-center bg-gray-900 overflow-hidden"
+	>
+		<!-- Imagen de fondo -->
+		<div class="absolute inset-0 z-0">
+			<!-- Si la imagen está en public/ -->
+			<img
+				src="images/frente.jpeg"
+				alt={companyData.hotel_name}
+				class="w-full h-full object-cover opacity-70"
+			/>
+			<!-- Si se importó, usar: <img src={fondoImage.src} ...> -->
+		</div>
+
+		<div class="container mx-auto px-4 z-10 text-center">
+			<h1
+				class="text-4xl md:text-6xl font-bold text-white mb-6 animate-fadeIn"
+			>
+				Bienvenido a <span class="text-primary"
+					>{companyData.hotel_name}</span
+				>
+			</h1>
+			<p class="text-xl text-white mb-8 max-w-2xl mx-auto">
+				{companyData.short_description}
+			</p>
+
+			<!-- Componente de disponibilidad -->
+			<AvailabilityCheck
+				phoneNumber={companyData.whatsapp_number ||
+					companyData.phone_number?.replace(/[^0-9]/g, "")}
+				hotelName={companyData.hotel_name}
+			/>
+		</div>
+
+		<div
+			class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce"
+		>
+			<a href="#about" class="text-white text-2xl">
+				<i class="fas fa-chevron-down"></i>
+			</a>
+		</div>
+	</section>
+
+	<!-- About Us Section -->
+	<section id="about" class="py-20 bg-white">
+		<div class="container mx-auto px-4">
+			<div class="max-w-4xl mx-auto text-center">
+				<img
+					src={companyData.logo}
+					alt="logo hotel"
+					class="h-20 mx-auto mb-8"
+				/>
+				<h2 class="text-3xl md:text-4xl font-bold text-gray-800 mb-6">
+					{companyData.hotel_name}
+				</h2>
+
+				<div
+					class="prose prose-lg text-gray-600 mb-10 text-center"
+					set:html={companyData.description}
+				/>
+
+				<div class="flex flex-col sm:flex-row justify-center gap-4">
+					<a
+						href="/information"
+						class="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-8 rounded-lg transition duration-300"
+					>
+						Conoce más
+					</a>
+					<!-- <a
+						href="/reservation"
+						class="bg-secondary hover:bg-secondary-dark text-white font-semibold py-3 px-8 rounded-lg transition duration-300"
+					>
+						Reservar ahora
+					</a> -->
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Features Section (Amenities) -->
+	<section class="py-20 bg-gray-50">
+		<div class="container mx-auto px-4">
+			<h2 class="text-3xl font-bold text-center text-gray-800 mb-12">
+				Nuestras Amenidades
+			</h2>
+
+			<div class="flex flex-wrap justify-center gap-8">
+				{
+					amenitiesData.map((amenity) => (
+						<div class="w-full sm:w-5/12 md:w-3/12 bg-white p-8 rounded-lg shadow-md hover:shadow-xl transition duration-300 text-center">
+							<div class="text-primary text-4xl mb-4">
+								<i class={`fas fa-${amenity.icon}`} />
+							</div>
+							<h3 class="text-xl font-semibold mb-3">
+								{amenity.name}
+							</h3>
+							<p class="text-gray-600">{amenity.description}</p>
+						</div>
+					))
+				}
+			</div>
+		</div>
+	</section>
+
+	<!-- Slot para extra_js (puede ser opcional) -->
+	<span slot="extra_js">
+		<script>
+			// Smooth scrolling para el botón "Conoce más" (el enlace de flecha)
+			document
+				.querySelector('a[href="#about"]')
+				?.addEventListener("click", function (e) {
+					e.preventDefault();
+					document
+						.querySelector("#about")
+						?.scrollIntoView({ behavior: "smooth" });
+				});
+		</script>
+	</span>
 </Layout>

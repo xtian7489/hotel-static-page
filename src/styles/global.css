@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+
+
+@theme {
+  /* Extending colors */
+  --color-primary: #E67E22;
+  --color-secondary: #2C3E50;
+  --color-accent: #16A085;
+
+  /* Extending spacing */
+  --spacing-128: 32rem;
+
+  /* Extending font families */
+}
+
+
+
+* {
+  font-family: "Montserrat", sans-serif;
+}
+
+img.img-fluid.logo {
+  width: 100px;
+  border-radius: 20px 5px;
+}
+
+.nav-link.active,
+.nav-link:hover {
+  border-bottom: 2px solid black;
+}
+
+.nav-link {
+  border-bottom: 2px solid transparent;
+}
+
+/* hero */
+.hero {
+  padding-top: 400px;
+  background: url("..images/frente.jpeg") no-repeat center center;
+  background-size: cover;
+}
+
+.bg-orange {
+  background-color: #e4a00e;
+}
+
+.btn-orange {
+  background-color: #e4a00e;
+  border: none;
+  color: white;
+  padding: 15px 25px;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none !important;
+  box-shadow: unset !important;
+}
+
+#promo {
+  cursor: pointer;
+  display: block;
+}
+
+#promo.inactive {
+  display: none;
+}
+
+#promo-holder {
+  display: none;
+}
+
+#promo-holder.active {
+  display: block;
+}
+
+.availability input {
+  font-size: 20px;
+}
+
+.availability.mt-4 {
+  position: relative;
+  top: 50px !important;
+  margin-top: 0px !important;
+  margin-bottom: 100px !important;
+}
+
+.ls-3 {
+  letter-spacing: 5px;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.info {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: 0.6s;
+  transform: translateY(100%);
+}
+
+.img-holder:hover .info {
+  transform: translateY(0%);
+}
+
+.hotel-icons p {
+  font-size: 14px;
+}
+
+.navbar-toggler {
+  border: unset !important;
+}
+
+button:focus {
+  outline: unset !important;
+  box-shadow: unset !important;
+}
+
+@media screen and (max-width: 992px) {
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  li.nav-item.ms-4 {
+    margin-left: 5px !important;
+    margin-top: 10px;
+    margin-right: 5px !important;
+  }
+
+  .topbar .d-flex {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .topbar p:first-child {
+    margin-bottom: 10px !important;
+  }
+
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 20px;
+  }
+
+  .reservation .col-md-6,
+  .reservation .col-md-3 {
+    padding: 25px !important;
+  }
+}
+
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-20px); }
+    60% { transform: translateY(-10px); }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 1s ease-out;
+}
+
+.animate-bounce {
+    animation: bounce 2s infinite;
+}
+
+/* Transiciones personalizadas */
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+/* Estilos para el formulario de disponibilidad */
+.availability-form {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+}
+
+/* Mejoras de hover */
+.hover-scale:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos para el menú móvil */
+.mobile-menu {
+    transition: transform 0.3s ease-in-out;
+}
+
+.mobile-menu.open {
+    transform: translateX(0);
+}
+
+
+.error-modal {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+html {
+  scroll-padding-top: 4rem;
+}

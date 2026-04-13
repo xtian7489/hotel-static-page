@@ -7,5 +7,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwindcss()],
   },
-
+  site: 'https://eysapart.com',
+  base: '/',
 });
